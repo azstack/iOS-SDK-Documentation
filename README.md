@@ -160,7 +160,7 @@ Quy trình xác thực giữa ứng dụng của bạn (AZStack SDK), AZStack se
 
 Sau khi client kết nối thành công đến AZStack bằng cách gọi hàm [[AzStackManager instance] connectWithCompletion:] ở bước 4.5 thì AZStack sẽ trả về none cho client.
 
-Hàm delegate này được AZStack SDK gọi sau khi nhận được none từ AZStack server gửi về, hàm này cần thực hiện việc gửi: azStackUserID, nonce lên server của bạn để lấy 1 authenToken.
+Hàm delegate này được AZStack SDK gọi sau khi nhận được none từ AZStack server gửi về, hàm này cần thực hiện việc gửi: azStackUserID, nonce lên server của bạn để lấy 1 authenToken (Identity Token).
 
 Về phía server của bạn, authenToken phải được sinh ra bằng cách mã hoá chuỗi:
 ```objective-c
@@ -168,17 +168,17 @@ Về phía server của bạn, authenToken phải được sinh ra bằng cách 
 ```
 bằng publicKey được sinh ra ở bước 1. Trong đó user_1 và none_1 là do client truyền lên. Xem code PHP mẫu tại đây: https://github.com/azstack/Backend-example/blob/master/gen_token_test.php
 
-Sau khi client nhận được authenToken từ server của bạn, bạn cần gửi authenToken này nên để xác thực trên phía server AzStack để hoàn tất quá trình xác thực và connect vào Server AzStack
+Sau khi client nhận được authenToken từ server của bạn, bạn cần gửi authenToken này lên AZStack server để hoàn tất quá trình xác thực bằng cách gọi hàm:
 
 ```objective-c
 [[AzStackManager instance] authenticateWithIdentityToken:authenToken];
 ```
 ### 5.2. AzUserInfoDelegate
-> a. Yêu cầu thông tin 1 user
+> a. Yêu cầu thông tin 1 số user
 ```objective-c
 - (void) azRequestUserInfo: (NSArray *) azStackUserIds withTarget: (int) target;
 ```
-Hàm này được AZStack SDK gọi để thông báo rằng SDK cần lấy thông tin của những người có  nằm trong mảng: listAzStackUserIDs.
+Hàm này được AZStack SDK gọi để thông báo rằng SDK cần lấy thông tin của những người nằm trong mảng: listAzStackUserIDs.
 
 
 Lúc này bạn có thể lấy thông tin về các user này trên nội bộ client (nếu có sẵn) hoặc lấy trên server của bạn, sau đó cần trả thông tin cho AZStack SDK bằng cách gọi hàm: 
