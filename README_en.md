@@ -12,7 +12,7 @@ To avoid complexity, please use same user id in your database (username, email, 
 
 
 # 2. Add the SDK to your Xcode Project
-### 2.1. Download AZStack Framework t?i:
+### 2.1. Download AZStack Framework at:
 
 https://www.dropbox.com/s/7giv1isvzjp3m9y/AzStack_SDK.zip?dl=0
 
@@ -126,7 +126,7 @@ We will explain those delegates [at step 5]. Please see sample code [here].
 [[AzStackManager instance] setDebugLog:YES];
 ```
 
-### 4.5. K?t n?i và xác th?c vào AZStack Server
+### 4.5. Connect and authenticate with AZStack Server
 ```objective-c
 //connect AZ
 [[AzStackManager instance] connectWithCompletion:^(NSString * authenticatedAzStackUserID, NSError *error, BOOL successful) {
