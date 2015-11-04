@@ -66,6 +66,8 @@ Open the "Build Phases" tab, in the "Link Binary With Libraries" section, add fr
 - MediaPlayer
 - libsqlite3.0.dylib
 
+> c. If you need the function “call”, please add file “AzStackCall.a” in “Link Binary With Libraries”
+
 ![Add other frameworks and libraries](http://azstack.com/docs/static/Libraries.png "Add other frameworks and libraries")
 
 # 3. Concepts and flow
@@ -127,7 +129,14 @@ We will explain those delegates [at step 5]. Please see sample code [here].
 [[AzStackManager instance] setDebugLog:YES];
 ```
 
-### 4.5. Connect and authenticate with AZStack Server
+### 4.5. Initial SDK:
+```objective-c
+[[AzStackManager instance] initial];
+```
+
+After setting up all parametters/ configuration, you can call this function to init the SDK. This function is required to store the configuration and initiate all the element of the SDK. Note: Just call only ONE time when open the application.
+
+### 4.6. Connect and authenticate with AZStack Server
 ```objective-c
 //connect AZ
 [[AzStackManager instance] connectWithCompletion:^(NSString * authenticatedAzStackUserID, NSError *error, BOOL successful) {
