@@ -166,7 +166,7 @@ Về phía server của bạn, authenToken phải được sinh ra bằng cách 
 ```objective-c
 {"azStackUserID":"user_1", "nonce":"none_1"}
 ```
-bằng publicKey được sinh ra ở bước 1. Trong đó user_1 và none_1 là do client truyền lên. Xem code PHP mẫu tại đây.
+bằng publicKey được sinh ra ở bước 1. Trong đó user_1 và none_1 là do client truyền lên. Xem code PHP mẫu tại đây: https://github.com/azstack/Backend-example/blob/master/gen_token_test.php
 
 Sau khi client nhận được authenToken từ server của bạn, bạn cần gửi authenToken này nên để xác thực trên phía server AzStack để hoàn tất quá trình xác thực và connect vào Server AzStack
 
