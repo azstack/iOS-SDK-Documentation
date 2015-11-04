@@ -16,7 +16,7 @@ Tương tự nếu hệ thống của bạn sử dụng số điện thoại, us
 
 [download link]
 
->a. Giải nén bạn sẽ có: AzStack.framework, AzStackRes.bundle
+>a. Giải nén bạn sẽ có: AzStack.framework, AzStackRes.bundle, AzStackCall.a
 
 
 >b. Drag the AzStack.framework and AzStackRes.bundle to Frameworks in Project Navigator. Create a new group Frameworks if it does not exist.
@@ -65,6 +65,8 @@ Open the "Build Phases" tab, in the "Link Binary With Libraries" section, add fr
 - AudioToolbox
 - MediaPlayer
 - libsqlite3.0.dylib
+
+> c. Nếu bạn cần tính năng call trong ứng dụng add file "AzStackCall.a" trong phần "Link Binary With Libraries".
 
 ![Add other frameworks and libraries](http://azstack.com/docs/static/Libraries.png "Add other frameworks and libraries")
 
@@ -126,7 +128,14 @@ Chúng tôi sẽ giải thích các delegate này [tại bước 5]. Xem code m�
 [[AzStackManager instance] setDebugLog:YES];
 ```
 
-### 4.5. Kết nối và xác thực vào AZStack Server
+### 4.5. Initial SDK:
+```objective-c
+[[AzStackManager instance] initial];
+```
+Sau khi đã thiết lập xong các thông số thì gọi hàm này để initial SDK. Hàm này là bắt buộc để lưu các thiết lập và 
+khởi tạo các thành phần của SDK. Chú ý: Hàm chỉ cần gọi 1 lần khi chạy ứng dụng.
+
+### 4.6. Kết nối và xác thực vào AZStack Server
 ```objective-c
 //connect AZ
 [[AzStackManager instance] connectWithCompletion:^(NSString * authenticatedAzStackUserID, NSError *error, BOOL successful) {
