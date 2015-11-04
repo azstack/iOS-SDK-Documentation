@@ -74,7 +74,7 @@ Open the "Build Phases" tab, in the "Link Binary With Libraries" section, add fr
 
 You need to initiate our sdk and process the authentication before sending/receiving message or making/receiving a call. The authentication will be made between three parties: Client (with sdk), AZStack Server and your server. This process is to make sure the connection is secured and user is authorized.
 
-Process is described by a model behind:
+Process is described by a model below:
 
 ![AZStack init and authentication](http://azstack.com/docs/static/IosAuthentication.png "AZStack init and authentication")
 
