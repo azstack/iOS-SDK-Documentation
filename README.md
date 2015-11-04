@@ -68,54 +68,90 @@ Open the "Build Phases" tab, in the "Link Binary With Libraries" section, add fr
 
 ![Add other frameworks and libraries](http://azstack.com/docs/static/Libraries.png "Add other frameworks and libraries")
 
-# 3. Khởi tạo SDK
+# 3. Concepts and flow
+
+Trước khi người dùng có thể gửi và nhận tin nhắn thì cần quá trình khởi tạo SDK và xác thực. Việc xác thực 1 user được thực hiện bởi 3 bên: client, AZStack server và server của bạn; đảm bảo việc bạn có thể cho phép / không cho phép 1 user nào đó xác thực / sử dụng dịch vụ chat/call bất cứ lúc nào.
+
+Quá trình được mô tả bởi biểu đồ dưới:
+
+![AZStack init and authentication](http://azstack.com/docs/static/IosAuthentication.png "AZStack init and authentication")
+
+# 4. Khởi tạo SDK
 Bước khởi tạo AZStack nên được đặt ngay lúc app khởi chạy, ngay đầu hàm:
 ```objective-c
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 ```
-### 3.1. Thiết lập AppID
+### 4.1. Thiết lập AppID
 ```objective-c
 [[AzStackManager instance] setAppId:@"YOUR_APP_ID_HERE"];
 ```
-### 3.2. Thiết lập các delegate của AZStack:
-- AzLoginDelegate
+
+### 4.2. Thiết lập Server
+```objective-c
+[[AzStackManager instance] setServerType: AZSERVER_PRODUCTION];
+```
+- AZSERVER_PRODUCTION: Server dùng để chạy thật, nên sử dụng khi sản phẩm của bạn đã hoàn thiện và ổn định
+- AZSERVER_TEST: Server phục vụ khi test, nên sử dụng trong quá trình phát triển sản phẩm.
+
+### 4.3. Thiết lập các delegate của AZStack:
+- AzAuthenticationDelegate
 - AzUserInfoDelegate
 - AzChatDelegate
 - AzCallDelegate
 
 Chúng tôi sẽ giải thích các delegate này [tại bước 4]. Xem code mẫu [tại đây].
 
-### 3.3. Thiết lập 1 số thông số:
+### 4.4. Thiết lập 1 số thông số:
+- Set màu title, button trên thanh navigation bar cho phù hợp với màu app của bạn
+
+  Lưu ý: setup này sẽ chỉ có tác dụng trên các UIViewController của SDK chứ  không ảnh hưởng tới các UIViewController khác trong app của bạn
+
 ```objective-c
-[[AzStackManager instance] preSetup:YES withStatusBarStyle:UIStatusBarStyleLightContent withTintColorNavigationBar:[UIColor whiteColor] withLanguage:@"vi"];
+[[AzStackManager instance] setTintColorNavigationBar:[UIColor whiteColor]];
 ```
-### 3.4. Kết nối và xác thực vào AZStack Server
+- Set ngôn ngữ được hiển thị trong AzStack SDK
+
+  Mặc định ngôn ngữ của SDK sẽ lấy ngôn ngữ hệ thống, nếu SDK không hỗ trợ ngôn ngữ đó thì tự động chuyển sang tiếng anh.
+
+```objective-c
+[[AzStackManager instance] setLanguage:@"vi"];
+```
+  Tham số truyền vào là mã ngôn ngữ. VD: Tiếng Anh là “en”, Tiếng Việt là “vi” 
+
+- Set hiển thị debug log:
+
+  Cho phép hiển thị debug log của SDK hay không?
+
+```objective-c
+[[AzStackManager instance] setDebugLog:YES];
+```
+
+### 4.5. Kết nối và xác thực vào AZStack Server
 ```objective-c
 //connect AZ
-[[AzStackManager instance] connectToServer:^(NSError *error, BOOL successful, int responseCode) {
-    NSLog(@"Dang nhap thanh cong, thuc hien ket noi den AzStack ...");
-    if (successful) {
-        NSLog(@"Connect AzStack Server Successful");
-    } else {
-        NSLog(@"Connect AzStack Server Fail! responseCode = %d", responseCode);
-    }
-}];
+[[AzStackManager instance] connectWithCompletion:^(NSString * authenticatedAzStackUserID, NSError *error, BOOL successful) {
+        if (successful) {
+            AzStackLog(@"Connect AzStack Server Successful: authenticatedAzStackUserID : %@", authenticatedAzStackUserID);
+        }
+        else{
+            AzStackLog(@"Connect AzStack Server Fail! ResponseCode: %d, Error Message: %@", error.code, [error description]);
+        }
+    }];
 ```
 
 Hàm này nên được gọi ngay sau khi user của bạn thực hiện xác thực thành công với server của bạn.
 
-Quy trình xác thực giữa ứng dụng của bạn (AZStack SDK), AZStack server và server của bạn được mô tả [ở đây]
+Quy trình xác thực giữa ứng dụng của bạn (AZStack SDK), AZStack server và server của bạn được mô tả ở bước 3.
 
-# 4. Thực hiện các hàm delegate của AZStack SDK
-### 4.1. AzLoginDelegate:
+# 5. Thực hiện các hàm delegate của AZStack SDK
+### 5.1. AzLoginDelegate:
 ```objective-c
-- (NSString *) azRequestTokenWithNonce:(NSString *)nonce
+- (void) azNonceReceived:(NSString *)nonce
 ```
-Trước tiên hãy tìm hiểu về quy trình xác thực 3 bên giữa: ứng dụng của bạn, server của bạn và AZStack [tại đây].
 
-Sau khi client kết nối thành công đến AZStack bằng cách gọi hàm [[AzStackManager instance] connectToServer] ở bước 3.4 thì AZStack sẽ trả về none cho client.
+Sau khi client kết nối thành công đến AZStack bằng cách gọi hàm [[AzStackManager instance] connectWithCompletion:] ở bước 4.5 thì AZStack sẽ trả về none cho client.
 
-Hàm delegate này được AZStack SDK gọi sau khi nhận được none từ AZStack server gửi về, hàm này cần thực hiện việc gửi: azStackUserID, nonce lên server của bạn để lấy 1 authenToken. Sau đó return authenToken ở cuối hàm.
+Hàm delegate này được AZStack SDK gọi sau khi nhận được none từ AZStack server gửi về, hàm này cần thực hiện việc gửi: azStackUserID, nonce lên server của bạn để lấy 1 authenToken.
 
 Về phía server của bạn, authenToken phải được sinh ra bằng cách mã hoá chuỗi:
 ```objective-c
@@ -123,12 +159,17 @@ Về phía server của bạn, authenToken phải được sinh ra bằng cách 
 ```
 bằng publicKey được sinh ra ở bước 1. Trong đó user_1 và none_1 là do client truyền lên. Xem code PHP mẫu tại đây.
 
-### 4.2. AzUserInfoDelegate
+Sau khi client nhận được authenToken từ server của bạn, bạn cần gửi authenToken này nên để xác thực trên phía server AzStack để hoàn tất quá trình xác thực và connect vào Server AzStack
+
+```objective-c
+[[AzStackManager instance] authenticateWithIdentityToken:authenToken];
+```
+### 5.2. AzUserInfoDelegate
 > a. Yêu cầu thông tin 1 user
 ```objective-c
-- (void) azRequestUserInfo: (id) appUserIds withTarget: (int) target;
+- (void) azRequestUserInfo: (NSArray *) azStackUserIds withTarget: (int) target;
 ```
-Hàm này được AZStack SDK gọi để thông báo rằng SDK cần lấy thông tin của những người có ID nằm trong mảng: listAzStackUserIDs.
+Hàm này được AZStack SDK gọi để thông báo rằng SDK cần lấy thông tin của những người có  nằm trong mảng: listAzStackUserIDs.
 
 
 Lúc này bạn có thể lấy thông tin về các user này trên nội bộ client (nếu có sẵn) hoặc lấy trên server của bạn, sau đó cần trả thông tin cho AZStack SDK bằng cách gọi hàm: 
@@ -137,7 +178,7 @@ Lúc này bạn có thể lấy thông tin về các user này trên nội bộ 
 ```
 Xem code mẫu tại đây.
 
-> b. Yêu cầu thông tin của tất cả user là bạn bè (hoặc trong danh bạ)
+> b. Yêu cầu danh sách user của bạn 
 ```objective-c
 - (NSArray *) azRequestListUser;
 ```
@@ -155,13 +196,13 @@ AZStack SDK sẽ gọi hàm này để lấy về UIViewController để hiển 
 
 Xem code mẫu tại đây.
 
-### 4.3. AzCallDelegate
+### 5.3. AzCallDelegate
 ```objective-c
 - (void) azJustFinishCall: (NSDictionary *) callInfo;
 ```
 Hàm này AZStack SDK gọi để thông báo cuộc gọi kết thúc.
 
-### 4.4. AzChatDelegate
+### 5.4. AzChatDelegate
 
 > a. Yêu cầu navigation controller
 ```objective-c
@@ -182,18 +223,48 @@ Xem code mẫu tại đây.
 Hàm này AZStack SDK gọi để thông báo khi số tin nhắn chưa đọc thay đổi.
 
 
-# 5. Tạo 1 cửa sổ chat (ChatController)
+# 6. Tạo 1 cửa sổ chat (ChatController)
 ```objective-c
 UIViewController* chatController =  [[AzStackManager instance] chatWithUser:self.contact.username withUserInfo:@{@"name": self.contact.fullname}];
 ```
+
+```objective-c
+- (UIViewController *) chatWithUser: (NSString *) azStackUserId;
+```
 Bạn gọi hàm này để tạo 1 chat controller (cửa sổ chat với 1 user).
-# 6. Gọi điện đến 1 người
+
+Trong trường hợp bạn muốn gọi controller để lựa chọn user thì gọi:
+```objective-c
+[[AzStackManager instance] createChat11];
+```
+Controller này sẽ lấy danh sách user từ AzUserInfoDelegate 
+
+# 7. Gọi điện đến 1 người
 ```objective-c
 [[AzStackManager instance] callWithUser:self.contact.username withUserInfo:@{@"name": self.contact.fullname}];
 ```
+```objective-c
+[[[AzStackManager instance] callWithUser: azStackUserId];
+```
+
 Bạn gọi hàm này khi cần gọi điện đến 1 user.
-# 7. Push notification
-### 7.1. Register for push notification
+
+# 8. Tạo chat nhóm
+```objective-c
+- (UIViewController *) chatWithGroup: (NSArray *) azStackUserIds withGroupInfo: (NSDictionary *) groupInfo;
+```
+
+Truyền vào list azStackUserIds mà bạn muốn tạo nhóm
+
+Trong trường hợp bạn muốn gọi controller để lựa chọn list azStackUserIds cho thuận tiện thì gọi hàm:
+```objective-c
+[[AzStackManager instance] createChatGroup];
+```
+
+Controller này sẽ lấy list user đầu vào từ AzUserInfoDelegate 
+
+# 9. Push notification
+### 9.1. Register for push notification
 
 Đầu tiên bạn phải đăng ký việc gửi push notification cho ứng dụng của bạn, trong hàm:
 ```objective-c
@@ -210,7 +281,7 @@ if([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
 }
 ```
 
-### 7.2. Gửi Devicede Token lên cho AZStack server và xử lý push notification / local notification
+### 9.2. Gửi Devicede Token lên cho AZStack server và xử lý push notification / local notification
 Xem code mẫu:
 ```objective-c
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken {
@@ -235,7 +306,7 @@ Xem code mẫu:
     [[AzStackManager instance] processRemoteNotify:userInfo];
 }
 ```
-### 7.3. Xử lý khi người dùng click vào local notification / push notification:
+### 9.3. Xử lý khi người dùng click vào local notification / push notification:
 ```objective-c
 [[AzStackManager instance] processRemoteNotify:launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]];
 UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
