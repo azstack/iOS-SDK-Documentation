@@ -14,7 +14,7 @@ To avoid complexity, please use same user id in your database (username, email, 
 # 2. Add the SDK to your Xcode Project
 ### 2.1. Download AZStack Framework t?i:
 
-[download link]
+https://www.dropbox.com/s/7giv1isvzjp3m9y/AzStack_SDK.zip?dl=0
 
 >a. Unzip the file: AzStack.framework, AzStackRes.bundle
 
