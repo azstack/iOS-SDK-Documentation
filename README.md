@@ -70,7 +70,7 @@ Open the "Build Phases" tab, in the "Link Binary With Libraries" section, add fr
 
 # 3. Concepts and flow
 
-Trước khi người dùng có thể gửi và nhận tin nhắn thì cần quá trình khởi tạo SDK và xác thực. Việc xác thực 1 user được thực hiện bởi 3 bên: client, AZStack server và server của bạn; đảm bảo việc bạn có thể cho phép / không cho phép 1 user nào đó xác thực / sử dụng dịch vụ chat/call bất cứ lúc nào.
+Trước khi người dùng có thể gửi và nhận tin nhắn thì cần quá trình khởi tạo SDK và xác thực. Việc xác thực 1 user được thực hiện bởi 3 bên: client (AZStack SDK), AZStack server và server của bạn; đảm bảo việc bạn có thể cho phép / không cho phép 1 user nào đó xác thực / sử dụng dịch vụ chat/call bất cứ lúc nào.
 
 Quá trình được mô tả bởi biểu đồ dưới:
 
@@ -99,7 +99,7 @@ Bước khởi tạo AZStack nên được đặt ngay lúc app khởi chạy, n
 - AzChatDelegate
 - AzCallDelegate
 
-Chúng tôi sẽ giải thích các delegate này [tại bước 4]. Xem code mẫu [tại đây].
+Chúng tôi sẽ giải thích các delegate này [tại bước 5]. Xem code mẫu [tại đây].
 
 ### 4.4. Thiết lập 1 số thông số:
 - Set màu title, button trên thanh navigation bar cho phù hợp với màu app của bạn
@@ -144,7 +144,7 @@ Hàm này nên được gọi ngay sau khi user của bạn thực hiện xác t
 Quy trình xác thực giữa ứng dụng của bạn (AZStack SDK), AZStack server và server của bạn được mô tả ở bước 3.
 
 # 5. Thực hiện các hàm delegate của AZStack SDK
-### 5.1. AzLoginDelegate:
+### 5.1. AzAuthenticationDelegate:
 ```objective-c
 - (void) azNonceReceived:(NSString *)nonce
 ```
