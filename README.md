@@ -66,7 +66,7 @@ Open the "Build Phases" tab, in the "Link Binary With Libraries" section, add fr
 - MediaPlayer
 - libsqlite3.0.dylib
 
-> c. If you need the function “call”, please add file “AzStackCall.a” in “Link Binary With Libraries”
+> c. If you need the function â€œcallâ€, please add file â€œAzStackCall.aâ€ in â€œLink Binary With Librariesâ€
 
 ![Add other frameworks and libraries](http://azstack.com/docs/static/Libraries.png "Add other frameworks and libraries")
 
@@ -119,7 +119,7 @@ We will explain those delegates [at step 5]. Please see sample code [here].
 ```objective-c
 [[AzStackManager instance] setLanguage:@"vi"];
 ```
-  Input parameter is language code. Example: English: “en”, Vietnamese: “vi” 
+  Input parameter is language code. Example: English: â€œenâ€, Vietnamese: â€œviâ€ 
 
 - Debug log display:
 
@@ -136,7 +136,28 @@ We will explain those delegates [at step 5]. Please see sample code [here].
 
 After setting up all parametters/ configuration, you can call this function to init the SDK. This function is required to store the configuration and initiate all the element of the SDK. Note: Just call only ONE time when open the application.
 
-### 4.6. Connect and authenticate with AZStack Server
+### 4.6. Modify Info.plist file
+> a. Allow application to receive message, incoming call in background mode
+
+Add below code into file Info.plist (in dict tag)
+```objective-c
+<key>UIBackgroundModes</key>
+<array>
+    <string>audio</string>
+    <string>voip</string>
+</array>
+```
+
+> b. Allow application to use location via GPS (send location feature)
+
+Add below code into file Info.plist (in dict tag)
+```objective-c
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>Would you like to use your GPS</string>
+```
+
+
+### 4.7. Connect and authenticate with AZStack Server
 ```objective-c
 //connect AZ
 [[AzStackManager instance] connectWithCompletion:^(NSString * authenticatedAzStackUserID, NSError *error, BOOL successful) {
@@ -193,7 +214,7 @@ See sample code here.
 - (NSArray *) azRequestListUser;
 ```
 
-AZStack SDK will call this function to fetch the user’s friend list (when you create new group chat, or …)
+AZStack SDK will call this function to fetch the userâ€™s friend list (when you create new group chat, or â€¦)
 
 See sample code here.
 
