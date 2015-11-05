@@ -102,7 +102,7 @@ AZStack SDK initialization should be called when the application open, at the be
 - AzChatDelegate
 - AzCallDelegate
 
-We will explain those delegates [at step 5]. Please see sample code [here].
+We will explain those delegates [at step 5]. Please see sample code here: https://github.com/azstack/iOS-SDK/tree/master/SampleCode/sample%20delegate
 
 ### 4.4. Setting some parameters:
 - Title color, button on navigation bar to match with your app screen:
@@ -207,7 +207,7 @@ Now, you can get information from user at client (if stored) or from your server
 ```objective-c
 [[AzStackManager instance] sendUserInfoToAzStack:listUserInfo withTarget:purpose.intValue];
 ```
-See sample code here.
+See sample code here: https://github.com/azstack/iOS-SDK/blob/master/SampleCode/sample%20method/azRequestUserInfo.m
 
 > b. Request your user's friend list
 ```objective-c
@@ -216,7 +216,7 @@ See sample code here.
 
 AZStack SDK will call this function to fetch the user’s friend list (when you create new group chat, or …)
 
-See sample code here.
+See sample code here: https://github.com/azstack/iOS-SDK/blob/master/SampleCode/sample%20method/azRequestListUser.m
 
 > c. Need 1 controller to display user information
 ```objective-c
@@ -225,7 +225,7 @@ See sample code here.
 
 AZStack SDK will call this function to retrieve UIViewController in order to display user information.
 
-See sample code here.
+See sample code here: https://github.com/azstack/iOS-SDK/blob/master/SampleCode/sample%20method/azRequestUserInfoController.m
 
 ### 5.3. AzCallDelegate
 ```objective-c
@@ -246,8 +246,6 @@ This function AZStack SDK call to retrieve UINavigationController in order to pu
 ![In-app Notification](http://azstack.com/docs/static/FakeNotification.png "In-app Notification")
 
 or after makeing a group.
-
-See sample code here.
 
 > b. Notify when unread message count changed
 ```objective-c
