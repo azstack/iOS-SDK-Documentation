@@ -1,3 +1,10 @@
+# 0. Quick Start
+<a href="https://www.youtube.com/watch?v=MTQo9T2Eua4" target="_blank">
+    <img src="http://azstack.com/docs/static/video_demo.png" alt=" " width="300" border="10" />
+</a>
+
+Download demo project at: https://github.com/azstack/iOS-SDK-Sample-Project/archive/master.zip
+
 # 1. Create application
 AZStack will provide an application ID (appID) for your application and a RSA public key (appKey); appID will be stored inside your app (client), and public key will be stored in your server.
 
