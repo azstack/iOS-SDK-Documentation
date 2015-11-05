@@ -14,7 +14,7 @@ Tương tự nếu hệ thống của bạn sử dụng số điện thoại, us
 # 2. Add the SDK to your Xcode Project
 ### 2.1. Download AZStack Framework tại:
 
-https://www.dropbox.com/s/31w3eihqtyd5zxa/AzStack_iOS_SDK.zip?dl=0
+https://github.com/azstack/iOS-SDK/archive/master.zip
 
 >a. Giải nén bạn sẽ có: AzStack.framework, AzStackRes.bundle, AzStackCall.a
 
