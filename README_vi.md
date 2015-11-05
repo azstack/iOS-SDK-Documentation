@@ -128,14 +128,33 @@ Chúng tôi sẽ giải thích các delegate này [tại bước 5]. Xem code m�
 [[AzStackManager instance] setDebugLog:YES];
 ```
 
-### 4.5. Initial SDK:
+### 4.5. Initial SDK
 ```objective-c
 [[AzStackManager instance] initial];
 ```
 Sau khi đã thiết lập xong các thông số thì gọi hàm này để initial SDK. Hàm này là bắt buộc để lưu các thiết lập và 
 khởi tạo các thành phần của SDK. Chú ý: Hàm chỉ cần gọi 1 lần khi chạy ứng dụng.
 
-### 4.6. Kết nối và xác thực vào AZStack Server
+
+### 4.6. Thay đổi file Info.plist
+> a. Cho phép ứng dụng nhận tin nhắn, cuộc gọi khi đang chạy ở background
+Bổ sung đoạn sau vào file Info.plist (trong dict tag)
+```objective-c
+<key>UIBackgroundModes</key>
+<array>
+    <string>audio</string>
+    <string>voip</string>
+</array>
+```
+
+> b. Cho phép ứng dụng lấy location qua GPS (tính năng gửi location)
+Bổ sung đoạn sau vào file Info.plist (trong dict tag)
+```objective-c
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>Would you like to use your GPS</string>
+```
+
+### 4.7. Kết nối và xác thực vào AZStack Server
 ```objective-c
 //connect AZ
 [[AzStackManager instance] connectWithCompletion:^(NSString * authenticatedAzStackUserID, NSError *error, BOOL successful) {
