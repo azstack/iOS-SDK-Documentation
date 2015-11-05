@@ -138,6 +138,7 @@ khởi tạo các thành phần của SDK. Chú ý: Hàm chỉ cần gọi 1 l�
 
 ### 4.6. Thay đổi file Info.plist
 > a. Cho phép ứng dụng nhận tin nhắn, cuộc gọi khi đang chạy ở background
+
 Bổ sung đoạn sau vào file Info.plist (trong dict tag)
 ```objective-c
 <key>UIBackgroundModes</key>
@@ -148,6 +149,7 @@ Bổ sung đoạn sau vào file Info.plist (trong dict tag)
 ```
 
 > b. Cho phép ứng dụng lấy location qua GPS (tính năng gửi location)
+
 Bổ sung đoạn sau vào file Info.plist (trong dict tag)
 ```objective-c
 <key>NSLocationWhenInUseUsageDescription</key>
