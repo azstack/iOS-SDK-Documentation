@@ -1,3 +1,7 @@
+<a href="https://www.youtube.com/watch?v=MTQo9T2Eua4" target="_blank">
+    <img src="http://azstack.com/docs/static/video_demo.png" alt=" " width="300" border="10" />
+</a>
+
 # 1. Tạo ứng dụng
 AZStack sẽ cung cấp cho bạn ID của ứng dụng (appID) và 1 RSA public key (appKey); appID sẽ được lưu trong ứng dụng (client) của bạn, còn public key sẽ được lưu trên server của bạn.
 
