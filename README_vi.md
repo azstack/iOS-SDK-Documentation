@@ -8,16 +8,6 @@ Download demo project at: https://github.com/azstack/iOS-SDK-Sample-Project/arch
 # 1. Tạo ứng dụng
 AZStack sẽ cung cấp cho bạn ID của ứng dụng (appID) và 1 RSA public key (appKey); appID sẽ được lưu trong ứng dụng (client) của bạn, còn public key sẽ được lưu trên server của bạn.
 
-Mỗi user duy nhất của ứng dụng của bạn cần 1 định danh duy nhất trên AZStack (dạng chuỗi): azStackUserID.
-
-Ví dụ ứng dụng của bạn sử dụng email để định danh duy nhất người dùng. Bạn có 2 user: user1@email.com, user2@abc.com thì 2 người này cần 2 azStackUserID khác nhau, có thể là: user1_email_com, user2_abc_com hoặc có thể dùng chính email làm azStackUserID.
-
-Tương tự nếu hệ thống của bạn sử dụng số điện thoại, username, ... để định danh duy nhất người dùng thì cũng có thể dùng chính số điện thoại, username, ... để làm azStackUserID.
-
-Để tránh phức tạp thì định danh user trên hệ thống của bạn (username, email, phone number, ...) cũng nên là định danh trên AZStack (azStackUserID).
-2 app khác nhau có thể có 2 user trùng azStackUserID.
-
-
 # 2. Add the SDK to your Xcode Project
 ### 2.1. Download AZStack Framework tại:
 
@@ -78,6 +68,19 @@ Open the "Build Phases" tab, in the "Link Binary With Libraries" section, add fr
 ![Add other frameworks and libraries](http://azstack.com/docs/static/Libraries.png "Add other frameworks and libraries")
 
 # 3. Concepts and flow
+
+### 3.1. User ID
+
+Mỗi user duy nhất của ứng dụng của bạn cần 1 định danh duy nhất trên AZStack (dạng chuỗi): azStackUserID.
+
+Ví dụ ứng dụng của bạn sử dụng email để định danh duy nhất người dùng. Bạn có 2 user: user1@email.com, user2@abc.com thì 2 người này cần 2 azStackUserID khác nhau, có thể là: user1_email_com, user2_abc_com hoặc có thể dùng chính email làm azStackUserID.
+
+Tương tự nếu hệ thống của bạn sử dụng số điện thoại, username, ... để định danh duy nhất người dùng thì cũng có thể dùng chính số điện thoại, username, ... để làm azStackUserID.
+
+Để tránh phức tạp thì định danh user trên hệ thống của bạn (username, email, phone number, ...) cũng nên là định danh trên AZStack (azStackUserID).
+2 app khác nhau có thể có 2 user trùng azStackUserID.
+
+### 3.2. Authentication
 
 Trước khi người dùng có thể gửi và nhận tin nhắn thì cần quá trình khởi tạo SDK và xác thực. Việc xác thực 1 user được thực hiện bởi 3 bên: client (AZStack SDK), AZStack server và server của bạn; đảm bảo việc bạn có thể cho phép / không cho phép 1 user nào đó xác thực / sử dụng dịch vụ chat/call bất cứ lúc nào.
 

@@ -8,16 +8,6 @@ Download demo project at: https://github.com/azstack/iOS-SDK-Sample-Project/arch
 # 1. Create application
 AZStack will provide an application ID (appID) for your application and a RSA public key (appKey); appID will be stored inside your app (client), and public key will be stored in your server.
 
-Each unique user of your application need 01 unqiue identifier (azStackUserID) in AZStack server. Its format type is string and called: azStackUserID. 
-
-For example, if your user use email to identify user, and you have 2 different users: user1@email.com, user2@abc.com then they need 2 different azStackUserID, like: user1_email_com, user2_abc_com. Or can use their emails (user1@email.com, user2@email.com) as azStackUserID.
-
-Another example, if your system use mobile number, username, ... to identify user then can use it as azStackUserID.
-
-To avoid complexity, please use same user id in your database (username, email, phone number, ...) as in AZStack (azStackUserID).
-(Two different apps can have 2 users with same azStackUserID)
-
-
 # 2. Add the SDK to your Xcode Project
 ### 2.1. Download AZStack Framework at:
 
@@ -78,6 +68,19 @@ Open the "Build Phases" tab, in the "Link Binary With Libraries" section, add fr
 ![Add other frameworks and libraries](http://azstack.com/docs/static/Libraries.png "Add other frameworks and libraries")
 
 # 3. Concepts and flow
+
+### 3.1. User ID
+
+Each unique user of your application need 01 unqiue identifier (azStackUserID) in AZStack server. Its format type is string and called: azStackUserID. 
+
+For example, if your user use email to identify user, and you have 2 different users: user1@email.com, user2@abc.com then they need 2 different azStackUserID, like: user1_email_com, user2_abc_com. Or can use their emails (user1@email.com, user2@email.com) as azStackUserID.
+
+Another example, if your system use mobile number, username, ... to identify user then can use it as azStackUserID.
+
+To avoid complexity, please use same user id in your database (username, email, phone number, ...) as in AZStack (azStackUserID).
+(Two different apps can have 2 users with same azStackUserID)
+
+### 3.2. Authentication
 
 You need to initiate our sdk and process the authentication before sending/receiving message or making/receiving a call. The authentication will be made between three parties: Client (with sdk), AZStack Server and your server. This process is to make sure the connection is secured and user is authorized.
 
