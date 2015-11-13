@@ -230,7 +230,7 @@ See sample code here: https://github.com/azstack/iOS-SDK-Documentation/blob/mast
 
 > c. Need 1 controller to display user information
 ```objective-c
-- (UIViewController *) azRequestUserInfoController: (AzUser *) user withAppUserId: (NSString *) appUserId;
+- (UIViewController *) azRequestUserInfoController:(AzStackUser *)user withAzStackUserId:(NSString *)azStackUserId;
 ```
 
 AZStack SDK will call this function to retrieve UIViewController in order to display user information.

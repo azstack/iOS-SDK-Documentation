@@ -229,7 +229,7 @@ Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK-Documentation/blo
 
 > c. Yêu cầu 1 controller để hiển thị thông tin của user
 ```objective-c
-- (UIViewController *) azRequestUserInfoController: (AzUser *) user withAppUserId: (NSString *) appUserId;
+- (UIViewController *) azRequestUserInfoController:(AzStackUser *)user withAzStackUserId:(NSString *)azStackUserId;
 ```
 
 AZStack SDK sẽ gọi hàm này để lấy về UIViewController để hiển thị thông tin của user.
