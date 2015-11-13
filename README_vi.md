@@ -111,7 +111,7 @@ Bước khởi tạo AZStack nên được đặt ngay lúc app khởi chạy, n
 - AzChatDelegate
 - AzCallDelegate
 
-Chúng tôi sẽ giải thích các delegate này [tại bước 5]. Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK/tree/master/SampleCode/sample%20delegate
+Chúng tôi sẽ giải thích các delegate này [tại bước 5]. Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK-Documentation/tree/master/SampleCode/sample%20delegate
 
 ### 4.4. Thiết lập 1 số thông số:
 - Set màu title, button trên thanh navigation bar cho phù hợp với màu app của bạn
@@ -216,7 +216,7 @@ Lúc này bạn có thể lấy thông tin về các user này trên nội bộ 
 ```objective-c
 [[AzStackManager instance] sendUserInfoToAzStack:listUserInfo withTarget:purpose.intValue];
 ```
-Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK/blob/master/SampleCode/sample%20method/azRequestUserInfo.m
+Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK-Documentation/blob/master/SampleCode/sample%20method/azRequestUserInfo.m
 
 > b. Yêu cầu danh sách user của bạn 
 ```objective-c
@@ -225,7 +225,7 @@ Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK/blob/master/Sampl
 
 AZStack SDK sẽ gọi hàm này để lấy về danh sách bạn bè (chẳng hạn lúc cần tạo group mới, ...)
 
-Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK/blob/master/SampleCode/sample%20method/azRequestListUser.m
+Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK-Documentation/blob/master/SampleCode/sample%20method/azRequestListUser.m
 
 > c. Yêu cầu 1 controller để hiển thị thông tin của user
 ```objective-c
@@ -234,7 +234,7 @@ Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK/blob/master/Sampl
 
 AZStack SDK sẽ gọi hàm này để lấy về UIViewController để hiển thị thông tin của user.
 
-Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK/blob/master/SampleCode/sample%20method/azRequestUserInfoController.m
+Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK-Documentation/blob/master/SampleCode/sample%20method/azRequestUserInfoController.m
 
 ### 5.3. AzCallDelegate
 ```objective-c
