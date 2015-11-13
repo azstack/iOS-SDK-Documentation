@@ -224,7 +224,7 @@ See sample code here: https://github.com/azstack/iOS-SDK-Documentation/blob/mast
 - (NSArray *) azRequestListUser;
 ```
 
-AZStack SDK will call this function to fetch the user’s friend list (when you create new group chat, or …)
+AZStack SDK will call this function to fetch the user’s friend list (when you create new group chat, or add new member to group chat)
 
 See sample code here: https://github.com/azstack/iOS-SDK-Documentation/blob/master/SampleCode/sample%20method/azRequestListUser.m
 

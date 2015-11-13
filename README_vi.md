@@ -223,7 +223,7 @@ Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK-Documentation/blo
 - (NSArray *) azRequestListUser;
 ```
 
-AZStack SDK sẽ gọi hàm này để lấy về danh sách bạn bè (chẳng hạn lúc cần tạo group mới, ...)
+AZStack SDK sẽ gọi hàm này để lấy về danh sách bạn bè (chẳng hạn lúc cần tạo group mới, lúc thêm 1 người dùng vào 1 group)
 
 Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK-Documentation/blob/master/SampleCode/sample%20method/azRequestListUser.m
 
