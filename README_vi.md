@@ -90,7 +90,7 @@ Quá trình được mô tả bởi biểu đồ dưới:
 
 #### Bước 0: 
 
-Vào: http://developer.azstack.com/ 
+Vào http://developer.azstack.co/
     
     a. Tạo project
 

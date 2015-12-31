@@ -90,7 +90,7 @@ Process is described by a model below:
 
 #### Step 0: 
 
-Go to http://developer.azstack.com/ 
+Go to http://developer.azstack.co/
 
     a. Create project
 
