@@ -6,7 +6,7 @@
 Download demo project at: https://github.com/azstack/iOS-SDK-Sample-Project/archive/master.zip
 
 # 1. Create application
-AZStack will provide an application ID (appID) for your application and a RSA RSA key pair (public key, private key); appID will be stored inside your app (client), and public key will be stored in your server.
+AZStack will provide an application ID (appID) for your application and a RSA key pair (public key, private key); appID and public key will be stored inside your app (client), private key will be stored in your server.
 
 # 2. Add the SDK to your Xcode Project
 ### 2.1. Download AZStack Framework at:
@@ -176,9 +176,13 @@ Add below code into file Info.plist (in dict tag)
 }];
 ```
 
-Parameter:  YOUR_AZSTACK_USER_ID: your user id on your system, as described above
-            YOUR_USER_CREDENTIALS: can be your password, token on your system. AZStack will not use this information. It's forwared to your server to authenticate your user.
-            NAME_FOR_PUSH_NOTIFICATION: optional, used to display on push notification.
+Parameter:
+
+    YOUR_AZSTACK_USER_ID: your user id on your system, as described above
+
+    YOUR_USER_CREDENTIALS: can be your password, token on your system. AZStack will not use this information. It's forwared to your server to authenticate your user.
+
+    NAME_FOR_PUSH_NOTIFICATION: optional, used to display on push notification.
 
 Authorization process between your application (AZStack SDK), AZStack server and your server is described in step 3.
 

@@ -6,7 +6,7 @@
 Download demo project at: https://github.com/azstack/iOS-SDK-Sample-Project/archive/master.zip
 
 # 1. Tạo ứng dụng
-AZStack sẽ cung cấp cho bạn ID của ứng dụng (appID) và 1 RSA key pair (public key, private key); appID sẽ được lưu trong ứng dụng (client) của bạn, còn public key sẽ được lưu trên server của bạn.
+AZStack sẽ cung cấp cho bạn ID của ứng dụng (appID) và 1 RSA key pair (public key, private key); appID và public key sẽ được lưu trong ứng dụng (client) của bạn, còn private key sẽ được lưu trên server của bạn.
 
 # 2. Add the SDK to your Xcode Project
 ### 2.1. Download AZStack Framework tại:
@@ -175,9 +175,13 @@ Bổ sung đoạn sau vào file Info.plist (trong dict tag)
 }];
 ```
 
-Parameter:  YOUR_AZSTACK_USER_ID: your user id on your system, as described above
-            YOUR_USER_CREDENTIALS: can be your password, token on your system. AZStack will not use this information. It's forwared to your server to authenticate your user.
-            NAME_FOR_PUSH_NOTIFICATION: optional, used to display on push notification.
+Parameter:
+
+    YOUR_AZSTACK_USER_ID: your user id on your system, as described above
+
+    YOUR_USER_CREDENTIALS: can be your password, token on your system. AZStack will not use this information. It's forwared to your server to authenticate your user.
+
+    NAME_FOR_PUSH_NOTIFICATION: optional, used to display on push notification.
 
 Quy trình xác thực giữa ứng dụng của bạn (AZStack SDK), AZStack server và server của bạn được mô tả ở bước 3.
 
