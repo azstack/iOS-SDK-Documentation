@@ -90,8 +90,11 @@ Quá trình được mô tả bởi biểu đồ dưới:
 
 Bước 0: Vào: http://developer.azstack.com/ 
     a. Tạo project
+
     b. Generate secret code và 1 cặp khoá RSA
+
     c. Thiết lập địa chỉ nhận HTTP POST xác thực từ AZStack trên server của bạn (Authentication URL)
+    
 
 Bước 1: Init SDK: thiết lập appID, publicKey sau đó gọi hàm [[AzStackManager instance] initial]
 
