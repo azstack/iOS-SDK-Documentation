@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AzStack/AzStackManager.h>
 
-@interface ThirdPartyImplement : NSObject <AzAuthenticationDelegate, AzUserInfoDelegate, AzCallDelegate, AzChatDelegate>
+@interface ThirdPartyImplement : NSObject <AzUserInfoDelegate, AzCallDelegate, AzChatDelegate>
 
 + (ThirdPartyImplement*)instance;
 

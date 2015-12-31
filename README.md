@@ -203,12 +203,12 @@ See sample code here: https://github.com/azstack/iOS-SDK-Documentation/blob/mast
 
 > b. Request your user's friend list
 ```objective-c
-- (NSArray *) azRequestListUser;
+- (NSArray *) azRequestFriendList;
 ```
 
 AZStack SDK will call this function to fetch the user’s friend list (when you create new group chat, or add new member to group chat)
 
-See sample code here: https://github.com/azstack/iOS-SDK-Documentation/blob/master/SampleCode/sample%20method/azRequestListUser.m
+See sample code here: https://github.com/azstack/iOS-SDK-Documentation/blob/master/SampleCode/sample%20method/azRequestFriendList.m
 
 > c. Need 1 controller to display user information
 ```objective-c

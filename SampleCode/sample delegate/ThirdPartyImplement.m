@@ -31,33 +31,6 @@ static ThirdPartyImplement *ins;
     return ins;
 }
 
-#pragma mark AzStackLoginDelegate
-
-- (void) azNonceReceived:(NSString *)nonce {
-    //Authenticate with azStackUserID: user1
-    NSString* azStackUserID = @"user2";
-    NSString* url = [NSString stringWithFormat:@"http://azstack.com/test/gettoken_test.php?azStackUserID=%@&nonce=%@", azStackUserID, nonce];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:url]];
-    [request setTimeoutInterval:60];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * response, NSData * data, NSError * connectionError) {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-        if ([httpResponse statusCode] == 200) {
-            NSString * resGetToken = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            
-            if (resGetToken) {
-                NSData *jsonData = [resGetToken dataUsingEncoding:NSUTF8StringEncoding];
-                id json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-                NSString * token =  json[@"token"];
-                [[AzStackManager instance] authenticateWithIdentityToken:token];
-            }
-        }
-    }];
-}
-
 #pragma mark AzStackUserInfoDelegate
 
 - (void) azRequestUserInfo:(NSArray *)azStackUserIds withTarget:(int)target{
@@ -81,7 +54,7 @@ static ThirdPartyImplement *ins;
     [[AzStackManager instance] sendUserInfoToAzStack:userInfoArrays withTarget:target];
 }
 
-- (NSArray *) azRequestListUser{
+- (NSArray *) azRequestFriendList{
     NSMutableArray * users = [[NSMutableArray alloc] init];
     AzStackUser * user1 = [[AzStackUser alloc] init];
     user1.fullname = @"User 1";

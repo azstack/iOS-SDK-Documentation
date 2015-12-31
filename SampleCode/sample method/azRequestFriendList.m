@@ -1,4 +1,4 @@
-- (NSArray *) azRequestListUser{
+- (NSArray *) azRequestFriendList{
     NSMutableArray * users = [[NSMutableArray alloc] init];
     
     AzStackUser * user1 = [[AzStackUser alloc] init];

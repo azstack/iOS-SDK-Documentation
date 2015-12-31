@@ -202,12 +202,12 @@ Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK-Documentation/blo
 
 > b. Yêu cầu danh sách user của bạn 
 ```objective-c
-- (NSArray *) azRequestListUser;
+- (NSArray *) azRequestFriendList;
 ```
 
 AZStack SDK sẽ gọi hàm này để lấy về danh sách bạn bè (chẳng hạn lúc cần tạo group mới, lúc thêm 1 người dùng vào 1 group)
 
-Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK-Documentation/blob/master/SampleCode/sample%20method/azRequestListUser.m
+Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK-Documentation/blob/master/SampleCode/sample%20method/azRequestFriendList.m
 
 > c. Yêu cầu 1 controller để hiển thị thông tin của user
 ```objective-c
