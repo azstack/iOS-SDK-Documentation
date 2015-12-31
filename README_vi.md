@@ -94,7 +94,7 @@ Bước 0: Vào: http://developer.azstack.com/
     b. Generate secret code và 1 cặp khoá RSA
 
     c. Thiết lập địa chỉ nhận HTTP POST xác thực từ AZStack trên server của bạn (Authentication URL)
-    
+
 
 Bước 1: Init SDK: thiết lập appID, publicKey sau đó gọi hàm [[AzStackManager instance] initial]
 
@@ -102,23 +102,31 @@ Bước 2: Gọi hàm [[AzStackManager instance] connectWithAzStackUserId...] đ
 
 Bước 3: Sau khi bạn gọi hàm connectWithAzStackUserId, SDK sẽ thực hiện mã hoá chuỗi: 
 
+```objective-c
 {"azStackUserID":"...", "userCredentials":"..."}
+```
 
 bằng thuật toán RSA 2048 với public key bạn cung cấp, chuỗi sau khi mã hoá gọi là: Identity Token sẽ được gửi lên AZStack.
 
 Bước 4: AZStack sẽ giải mã Identity Token bằng thuật toán RSA 2048 với private key được sinh ra ở bước 0. Sau đó lại mã hoá chuỗi sau bằng chính public key sinh ra ở bước 0:
 
+```objective-c
 {"azStackUserID":"...", "userCredentials":"...", "timestamp": ..., "appId":"...", "code":"..."}
+```
 
 trong đó code bằng:
 
+```objective-c
 md5(appId + "_" + timestamp + "_" + secret_code)
+```
 
 Chuỗi được mã hoá sinh ra gọi là: Authentication Token. AZStack sẽ gửi đến server của bạn bằng HTTP POST với url bạn cung cấp ở bước 0 (Authentication URL).
 
 Bước 5: Server của bạn khi nhận HTTP POST từ AZStack gọi sang để thực hiện xác thực cần giải mã chuỗi Authentication Token bằng private key sinh ra ở bước 0, kiểm tra lại code có đúng bằng: 
 
+```objective-c
 md5(appId + "_" + timestamp + "_" + secret_code)
+```
 
 hay không, sau đó thực hiện xác thực bằng cách kiểm tra azStackUserID và userCredentials trên database của bạn.
 
