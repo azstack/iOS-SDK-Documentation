@@ -88,6 +88,8 @@ Process is described by a model below:
 
 ![AZStack init and authentication](http://azstack.com/docs/static/ios_authentication.png "AZStack init and authentication")
 
+
+
 # 4. SDK initialization
 AZStack SDK initialization should be called when the application open, at the beginning of the function:
 
