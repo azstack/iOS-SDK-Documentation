@@ -6,7 +6,7 @@
 Download demo project at: https://github.com/azstack/iOS-SDK-Sample-Project/archive/master.zip
 
 # 1. Tạo ứng dụng
-AZStack sẽ cung cấp cho bạn ID của ứng dụng (appID) và 1 RSA public key (appKey); appID sẽ được lưu trong ứng dụng (client) của bạn, còn public key sẽ được lưu trên server của bạn.
+AZStack sẽ cung cấp cho bạn ID của ứng dụng (appID) và 1 RSA key pair (public key, private key); appID sẽ được lưu trong ứng dụng (client) của bạn, còn public key sẽ được lưu trên server của bạn.
 
 # 2. Add the SDK to your Xcode Project
 ### 2.1. Download AZStack Framework tại:
@@ -86,7 +86,7 @@ Trước khi người dùng có thể gửi và nhận tin nhắn thì cần qu�
 
 Quá trình được mô tả bởi biểu đồ dưới:
 
-![AZStack init and authentication](http://azstack.com/docs/static/IosAuthentication.png "AZStack init and authentication")
+![AZStack init and authentication](http://azstack.com/docs/static/ios_authentication.png "AZStack init and authentication")
 
 # 4. Khởi tạo SDK
 Bước khởi tạo AZStack nên được đặt ngay lúc app khởi chạy, ngay đầu hàm:
@@ -98,15 +98,11 @@ Bước khởi tạo AZStack nên được đặt ngay lúc app khởi chạy, n
 [[AzStackManager instance] setAppId:@"YOUR_APP_ID_HERE"];
 ```
 
-### 4.2. Thiết lập Server
+### 4.2. Thiết lập Public Key
 ```objective-c
-[[AzStackManager instance] setServerType: AZSERVER_PRODUCTION];
+[[AzStackManager instance] setPublicKey:@"YOUR_PUBLIC_KEY_HERE"];
 ```
-- AZSERVER_PRODUCTION: Server dùng để chạy thật, nên sử dụng khi sản phẩm của bạn đã hoàn thiện và ổn định
-- AZSERVER_TEST: Server phục vụ khi test, nên sử dụng trong quá trình phát triển sản phẩm.
-
 ### 4.3. Thiết lập các delegate của AZStack:
-- AzAuthenticationDelegate
 - AzUserInfoDelegate
 - AzChatDelegate
 - AzCallDelegate
@@ -169,42 +165,24 @@ Bổ sung đoạn sau vào file Info.plist (trong dict tag)
 ### 4.7. Kết nối và xác thực vào AZStack Server
 ```objective-c
 //connect AZ
-[[AzStackManager instance] connectWithCompletion:^(NSString * authenticatedAzStackUserID, NSError *error, BOOL successful) {
-        if (successful) {
-            AzStackLog(@"Connect AzStack Server Successful: authenticatedAzStackUserID : %@", authenticatedAzStackUserID);
-        }
-        else{
-            AzStackLog(@"Connect AzStack Server Fail! ResponseCode: %d, Error Message: %@", error.code, [error description]);
-        }
-    }];
+[[AzStackManager instance] connectWithAzStackUserId:@"YOUR_AZSTACK_USER_ID" userCredentials:@"YOUR_USER_CREDENTIALS" fullname:@"NAME_FOR_PUSH_NOTIFICATION" completion:^(NSString *authenticatedAzStackUserID, NSError *error, BOOL successful) {
+    if (successful) {
+        AzStackLog(@"Connect AzStack Server Successful: authenticatedAzStackUserID : %@", authenticatedAzStackUserID);
+    }
+    else{
+        AzStackLog(@"Connect AzStack Server Fail! ResponseCode: %d, Error Message: %@", error.code, [error description]);
+    }
+}];
 ```
 
-Hàm này nên được gọi ngay sau khi user của bạn thực hiện xác thực thành công với server của bạn.
+Parameter:  YOUR_AZSTACK_USER_ID: your user id on your system, as described above
+            YOUR_USER_CREDENTIALS: can be your password, token on your system. AZStack will not use this information. It's forwared to your server to authenticate your user.
+            NAME_FOR_PUSH_NOTIFICATION: optional, used to display on push notification.
 
 Quy trình xác thực giữa ứng dụng của bạn (AZStack SDK), AZStack server và server của bạn được mô tả ở bước 3.
 
 # 5. Thực hiện các hàm delegate của AZStack SDK
-### 5.1. AzAuthenticationDelegate:
-```objective-c
-- (void) azNonceReceived:(NSString *)nonce
-```
-
-Sau khi client kết nối thành công đến AZStack bằng cách gọi hàm [[AzStackManager instance] connectWithCompletion:] ở bước 4.5 thì AZStack sẽ trả về none cho client.
-
-Hàm delegate này được AZStack SDK gọi sau khi nhận được none từ AZStack server gửi về, hàm này cần thực hiện việc gửi: azStackUserID, nonce lên server của bạn để lấy 1 identityToken (Identity Token).
-
-Về phía server của bạn, identityToken phải được sinh ra bằng cách mã hoá chuỗi:
-```objective-c
-{"azStackUserID":"user_1", "nonce":"none_1"}
-```
-bằng publicKey được sinh ra ở bước 1. Trong đó user_1 và none_1 là do client truyền lên. Xem code PHP mẫu tại đây: https://github.com/azstack/Backend-example/blob/master/gen_token_test.php
-
-Sau khi client nhận được identityToken từ server của bạn, bạn cần gửi identityToken này lên AZStack server để hoàn tất quá trình xác thực bằng cách gọi hàm:
-
-```objective-c
-[[AzStackManager instance] authenticateWithIdentityToken:identityToken];
-```
-### 5.2. AzUserInfoDelegate
+### 5.1. AzUserInfoDelegate
 > a. Yêu cầu thông tin 1 số user
 ```objective-c
 - (void) azRequestUserInfo: (NSArray *) azStackUserIds withTarget: (int) target;
@@ -236,13 +214,13 @@ AZStack SDK sẽ gọi hàm này để lấy về UIViewController để hiển 
 
 Xem code mẫu tại đây: https://github.com/azstack/iOS-SDK-Documentation/blob/master/SampleCode/sample%20method/azRequestUserInfoController.m
 
-### 5.3. AzCallDelegate
+### 5.2. AzCallDelegate
 ```objective-c
 - (void) azJustFinishCall: (NSDictionary *) callInfo;
 ```
 Hàm này AZStack SDK gọi để thông báo cuộc gọi kết thúc.
 
-### 5.4. AzChatDelegate
+### 5.3. AzChatDelegate
 
 > a. Yêu cầu navigation controller
 ```objective-c
@@ -260,6 +238,7 @@ hoặc khi tạo group xong.
 - (void) azUpdateUnreadMessageCount: (int) unreadCount;
 ```
 Hàm này AZStack SDK gọi để thông báo khi số tin nhắn chưa đọc thay đổi.
+
 
 
 # 6. Tạo 1 cửa sổ chat (ChatController)
@@ -359,5 +338,10 @@ if (locationNotification) {
 ```
 (trước khi hàm didFinishLaunchingWithOptions return)
 
- 
+### 9.4. Cập nhật tên tài khoản để hiển thị trong notification
 
+AZStack cần tên tài khoản của bạn để hiển thị trong các thông báo khi push notification. Vì vậy, mỗi khi bạn cập nhật lại tên tài khoản cần gọi hàm sau để update tên hiển thị mới nhất:
+
+```objective-c
+[[AzStackManager instance] updateFullnameForPushNotification:@"NEW_NAME"];
+```
