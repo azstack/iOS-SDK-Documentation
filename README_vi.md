@@ -177,11 +177,11 @@ Bổ sung đoạn sau vào file Info.plist (trong dict tag)
 
 Parameter:
 
-    YOUR_AZSTACK_USER_ID: your user id on your system, as described above
+    YOUR_AZSTACK_USER_ID: your user ID on your system, as described above
 
-    YOUR_USER_CREDENTIALS: can be your password, token on your system. AZStack will not use this information. It's forwared to your server to authenticate your user.
+    YOUR_USER_CREDENTIALS: can be your password, token on your system. AZStack will not use this information. It's forwared to your server to authenticate your user
 
-    NAME_FOR_PUSH_NOTIFICATION: optional, used to display on push notification.
+    NAME_FOR_PUSH_NOTIFICATION: optional, used to display on push notification
 
 Quy trình xác thực giữa ứng dụng của bạn (AZStack SDK), AZStack server và server của bạn được mô tả ở bước 3.
 
