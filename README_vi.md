@@ -89,6 +89,7 @@ Quá trình được mô tả bởi biểu đồ dưới:
 ![AZStack init and authentication](http://azstack.com/docs/static/ios_authentication.png "AZStack init and authentication")
 
 Bước 0: Vào: http://developer.azstack.com/ 
+    
     a. Tạo project
 
     b. Generate secret code và 1 cặp khoá RSA
