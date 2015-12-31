@@ -88,9 +88,55 @@ Process is described by a model below:
 
 ![AZStack init and authentication](http://azstack.com/docs/static/ios_authentication.png "AZStack init and authentication")
 
+#### Step 0: 
+
+Go to http://developer.azstack.com/ 
+
+    a. Create project
+
+    b. Generate keys
+
+    c. Update Authentication URL which used to authenticate user between AZStack and your backend.
+
+#### Step 1: 
+
+Initialize SDK with your appID, public key: [[AzStackManager instance] initial]
+
+#### Step 2: 
+
+Call [[AzStackManager instance] connectWithAzStackUserId...] to execute authentication process.
+
+#### Step 3: 
+
+After calling connectWithAzStackUserId method, AZStack SDK will encrypt the following string:
+```objective-c
+{"azStackUserID":"...", "userCredentials":"..."}
+```
+using RSA 2048 algorithm with your public key. The Identity Token is returned and will be sent to AZStack server.
+
+#### Step 4: 
+
+AZStack decrypts Identity Token using RSA 2048 algorithm with the private key generated at step 0. Then AZStack will use the public key generated at step 0 to encrypt the following string:
+```objective-c
+{"azStackUserID":"...", "userCredentials":"...", "timestamp": ..., "appId":"...", "code":"..."}
+```
+"code" is generated as below:
+```objective-c
+md5(appId + "_" + timestamp + "_" + secret_code)
+```
+The encryption process returns Authentication Token. AZStack will send the Authentication Token to your server via Authentication URL (updated at step 0).
+
+#### Step 5: 
+
+On your server side, you need decrypt Authentication Token receiving from AZStack server to get the "code". Compare "code" with the following string:
+```objective-c
+md5(appId + "_" + timestamp + "_" + secret_code)
+```
+If they are the same, execute authentication with azStackUserID and userCredentials on your backend. Please see sample code writing in PHP here: https://github.com/azstack/Backend-example/blob/master/php/azstack_authentication.php
 
 
 # 4. SDK initialization
+
 AZStack SDK initialization should be called when the application open, at the beginning of the function:
 
 ```objective-c
