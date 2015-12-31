@@ -94,13 +94,13 @@ Go to http://developer.azstack.com/
 
     a. Create project
 
-    b. Generate keys
+    b. Generate RSA key pair and secret code
 
-    c. Update Authentication URL which used to authenticate user between AZStack and your backend.
+    c. Update Authentication URL which used to authenticate user between AZStack and your server
 
 #### Step 1: 
 
-Initialize SDK with your appID, public key: [[AzStackManager instance] initial]
+Initialize SDK with your appID, public key, and then call this method: [[AzStackManager instance] initial]
 
 #### Step 2: 
 
