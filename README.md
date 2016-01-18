@@ -90,7 +90,7 @@ Process is described by a model below:
 
 #### Step 0: 
 
-Go to http://developer.azstack.co/
+Go to https://developer.azstack.com/
 
     a. Create project
 
@@ -132,7 +132,7 @@ On your server side, you need decrypt Authentication Token receiving from AZStac
 ```objective-c
 md5(appId + "_" + timestamp + "_" + secret_code)
 ```
-If they are the same, execute authentication with azStackUserID and userCredentials on your backend. Please see sample code writing in PHP here: https://github.com/azstack/Backend-example/blob/master/php/azstack_authentication.php
+If they are the same, execute authentication with azStackUserID and userCredentials on your backend. Please see sample code writing in PHP here: https://github.com/azstack/Backend-example/tree/master/php
 
 
 # 4. SDK initialization

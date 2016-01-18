@@ -90,7 +90,7 @@ Quá trình được mô tả bởi biểu đồ dưới:
 
 #### Bước 0: 
 
-Vào http://developer.azstack.co/
+Vào https://developer.azstack.com/
     
     a. Tạo project
 
@@ -143,7 +143,7 @@ md5(appId + "_" + timestamp + "_" + secret_code)
 
 hay không, sau đó thực hiện xác thực bằng cách kiểm tra azStackUserID và userCredentials trên database của bạn.
 
-Please see sample code writing in PHP here: https://github.com/azstack/Backend-example/blob/master/php/azstack_authentication.php
+Please see sample code writing in PHP here: https://github.com/azstack/Backend-example/tree/master/php
 
 
 
