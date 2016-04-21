@@ -11,7 +11,7 @@ AZStack will provide an application ID (appID) for your application and a RSA ke
 # 2. Add the SDK to your Xcode Project
 ### 2.1. Download AZStack Framework at:
 
-https://github.com/azstack/iOS-SDK/archive/master.zip
+https://developers.azstack.co/SDK/iOS
 
 >a. Unzip the zip file you will have: AzStack.framework, AzStackRes.bundle, AzStackCall.a
 

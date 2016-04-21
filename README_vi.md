@@ -11,7 +11,7 @@ AZStack sẽ cung cấp cho bạn ID của ứng dụng (appID) và 1 RSA key pa
 # 2. Add the SDK to your Xcode Project
 ### 2.1. Download AZStack Framework tại:
 
-https://github.com/azstack/iOS-SDK/archive/master.zip
+https://developers.azstack.co/SDK/iOS
 
 >a. Giải nén bạn sẽ có: AzStack.framework, AzStackRes.bundle, AzStackCall.a
 
