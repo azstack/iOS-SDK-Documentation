@@ -62,6 +62,10 @@ Open the "Build Phases" tab, in the "Link Binary With Libraries" section, add fr
 - AudioToolbox
 - MediaPlayer
 - libsqlite3.0.dylib
+- libicucore
+- libc++
+- GLKit
+- VideoToolbox
 
 > c. If you need the function “call”, please add file “AzStackCall.a” in “Link Binary With Libraries”
 
@@ -311,14 +315,26 @@ In case, you want to call Controller to select user then call:
 This Controller will retriev user lise from AzUserInfoDelegate 
 
 # 7. Call to single user
+
+Audio call: 
+
 ```objective-c
 [[AzStackManager instance] callWithUser:self.contact.username withUserInfo:@{@"name": self.contact.fullname}];
 ```
+
 ```objective-c
 [[[AzStackManager instance] callWithUser: azStackUserId];
 ```
 
-Use this function to make a call to a user from current user.
+Video call:
+
+```objective-c
+[[AzStackManager instance] callVideoWithUser:@"user2"];
+```
+
+```objective-c
+[[AzStackManager instance] callVideoWithUser:@"user2" withUserInfo:@{@"name": @"User 2"}];
+```
 
 # 8. Create group chat
 ```objective-c

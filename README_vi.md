@@ -62,6 +62,10 @@ Open the "Build Phases" tab, in the "Link Binary With Libraries" section, add fr
 - AudioToolbox
 - MediaPlayer
 - libsqlite3.0.dylib
+- libicucore
+- libc++
+- GLKit
+- VideoToolbox
 
 > c. Nếu bạn cần tính năng call trong ứng dụng add file "AzStackCall.a" trong phần "Link Binary With Libraries".
 
@@ -321,6 +325,9 @@ Trong trường hợp bạn muốn gọi controller để lựa chọn user thì
 Controller này sẽ lấy danh sách user từ AzUserInfoDelegate 
 
 # 7. Gọi điện đến 1 người
+
+Audio call:
+
 ```objective-c
 [[AzStackManager instance] callWithUser:self.contact.username withUserInfo:@{@"name": self.contact.fullname}];
 ```
@@ -328,7 +335,15 @@ Controller này sẽ lấy danh sách user từ AzUserInfoDelegate
 [[[AzStackManager instance] callWithUser: azStackUserId];
 ```
 
-Bạn gọi hàm này khi cần gọi điện đến 1 user.
+Video call:
+
+```objective-c
+[[AzStackManager instance] callVideoWithUser:@"user2"];
+```
+
+```objective-c
+[[AzStackManager instance] callVideoWithUser:@"user2" withUserInfo:@{@"name": @"User 2"}];
+```
 
 # 8. Tạo chat nhóm
 ```objective-c
