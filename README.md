@@ -246,6 +246,7 @@ Authorization process between your application (AZStack SDK), AZStack server and
 ### 4.9. Disconnect from AzStack server and clear all cached data on client
 ```objective-c
 [[AzStackManager instance] disconnectAndClearAllData];
+```
 
 # 5. Process delegates of AZStack SDK
 ### 5.1. AzUserInfoDelegate

@@ -256,6 +256,7 @@ Quy trình xác thực giữa ứng dụng của bạn (AZStack SDK), AZStack se
 ### 4.9. Ngắt kết nối khỏi AzStack server và xóa tất cả dữ liệu đã lưu trữ trên client
 ```objective-c
 [[AzStackManager instance] disconnectAndClearAllData];
+```
 
 # 5. Thực hiện các hàm delegate của AZStack SDK
 ### 5.1. AzUserInfoDelegate
