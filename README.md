@@ -238,6 +238,15 @@ Parameter:
 
 Authorization process between your application (AZStack SDK), AZStack server and your server is described in step 3.
 
+### 4.8. Disconnect from AzStack server
+```objective-c
+[[AzStackManager instance] disconnectAzServer];
+```
+
+### 4.9. Disconnect from AzStack server and clear all cached data on client
+```objective-c
+[[AzStackManager instance] disconnectAndClearAllData];
+
 # 5. Process delegates of AZStack SDK
 ### 5.1. AzUserInfoDelegate
 > a. Request information of some users

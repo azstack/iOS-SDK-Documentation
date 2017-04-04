@@ -248,6 +248,15 @@ Parameter:
 
 Quy trình xác thực giữa ứng dụng của bạn (AZStack SDK), AZStack server và server của bạn được mô tả ở bước 3.
 
+### 4.8. Ngắt kết nối khỏi AzStack server
+```objective-c
+[[AzStackManager instance] disconnectAzServer];
+```
+
+### 4.9. Ngắt kết nối khỏi AzStack server và xóa tất cả dữ liệu đã lưu trữ trên client
+```objective-c
+[[AzStackManager instance] disconnectAndClearAllData];
+
 # 5. Thực hiện các hàm delegate của AZStack SDK
 ### 5.1. AzUserInfoDelegate
 > a. Yêu cầu thông tin 1 số user
