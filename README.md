@@ -22,14 +22,14 @@ https://developers.azstack.co/SDK/iOS
 
 ![Add the SDK 1](/SampleCode/assets/AddTheSDK1.png "Add the SDK 1")
 
-![Add the SDK 2](http://azstack.com/docs/static/AddTheSDK2.png "Add the SDK 2")
+![Add the SDK 2](/SampleCode/assets/AddTheSDK2.png "Add the SDK 2")
 
 
 ### 2.2. Configure Xcode Project
 > a. Add Linker Flag
 Open the "Build Settings" tab, in the "Linking" section, locate the "Other Linker Flags" setting and add the "-ObjC" flag:
 
-![Add Linker Flag](http://azstack.com/docs/static/ConfigOtherLinkerFlags.png "Add Linker Flag")
+![Add Linker Flag](/SampleCode/assets/ConfigOtherLinkerFlags.png "Add Linker Flag")
 
 Note:
 This step is required, otherwise crash will happen:
@@ -66,7 +66,7 @@ Open the "Build Phases" tab, in the "Link Binary With Libraries" section, add fr
 
 > c. If you need the function “call”, please add file “AzStackCall.a” in “Link Binary With Libraries”
 
-![Add other frameworks and libraries](http://azstack.com/docs/static/Libraries.png "Add other frameworks and libraries")
+![Add other frameworks and libraries](/SampleCode/assets/add_lib.png "Add other frameworks and libraries")
 
 # 3. Concepts and flow
 
@@ -87,7 +87,7 @@ You need to initiate our sdk and process the authentication before sending/recei
 
 Process is described by a model below:
 
-![AZStack init and authentication](http://azstack.com/docs/static/ios_authentication.png "AZStack init and authentication")
+![AZStack init and authentication](/SampleCode/assets/ios_authentication.png "AZStack init and authentication")
 
 #### Step 0: 
 
@@ -294,7 +294,7 @@ This function will be called when the call is ended.
 
 This function AZStack SDK call to retrieve UINavigationController in order to push ChatController when user clicks on In-app Notification 
 
-![In-app Notification](http://azstack.com/docs/static/FakeNotification.png "In-app Notification")
+![In-app Notification](/SampleCode/assets/fakenotify.png "In-app Notification")
 
 or after makeing a group.
 
