@@ -20,7 +20,7 @@ https://developers.azstack.co/SDK/iOS
 >d. Deselect Copy items into destination group's folder. This references the SDK where you installed it rather than copying the SDK into your app.
 
 
-![Add the SDK 1](iOS-SDK-Documentation/SampleCode/assets/AddTheSDK1.png "Add the SDK 1")
+![Add the SDK 1](/SampleCode/assets/AddTheSDK1.png "Add the SDK 1")
 
 ![Add the SDK 2](http://azstack.com/docs/static/AddTheSDK2.png "Add the SDK 2")
 
