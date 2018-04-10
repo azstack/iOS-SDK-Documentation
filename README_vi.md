@@ -23,16 +23,16 @@ https://developers.azstack.co/SDK/iOS
 >d. Deselect Copy items into destination group's folder. This references the SDK where you installed it rather than copying the SDK into your app.
 
 
-![Add the SDK 1](http://azstack.com/docs/static/AddTheSDK1.png "Add the SDK 1")
+![Add the SDK 1](/SampleCode/assets/AddTheSDK1.png "Add the SDK 1")
 
-![Add the SDK 2](http://azstack.com/docs/static/AddTheSDK2.png "Add the SDK 2")
+![Add the SDK 2](/SampleCode/assets/AddTheSDK2.png "Add the SDK 2")
 
 
 ### 2.2. Configure Xcode Project
 > a. Add Linker Flag
 Open the "Build Settings" tab, in the "Linking" section, locate the "Other Linker Flags" setting and add the "-ObjC" flag:
 
-![Add Linker Flag](http://azstack.com/docs/static/ConfigOtherLinkerFlags.png "Add Linker Flag")
+![Add Linker Flag](/SampleCode/assets/ConfigOtherLinkerFlags.png "Add Linker Flag")
 
 Note:
 Bước này là bắt buộc, nếu không khi chạy chương trình sẽ sinh lỗi crash:
@@ -61,7 +61,7 @@ Open the "Build Phases" tab, in the "Link Binary With Libraries" section, add fr
 - CFNetwork
 - AudioToolbox
 - MediaPlayer
-- libsqlite3.0.dylib
+- libsqlite3.0
 - libicucore
 - libc++
 - GLKit
@@ -69,7 +69,7 @@ Open the "Build Phases" tab, in the "Link Binary With Libraries" section, add fr
 
 > c. Nếu bạn cần tính năng call trong ứng dụng add file "AzStackCall.a" trong phần "Link Binary With Libraries".
 
-![Add other frameworks and libraries](http://azstack.com/docs/static/Libraries.png "Add other frameworks and libraries")
+![Add other frameworks and libraries](/SampleCode/assets/add_lib.png "Add other frameworks and libraries")
 
 # 3. Concepts and flow
 
@@ -90,7 +90,7 @@ Trước khi người dùng có thể gửi và nhận tin nhắn thì cần qu�
 
 Quá trình được mô tả bởi biểu đồ dưới:
 
-![AZStack init and authentication](http://azstack.com/docs/static/ios_authentication.png "AZStack init and authentication")
+![AZStack init and authentication](/SampleCode/assets/ios_authentication.png "AZStack init and authentication")
 
 #### Bước 0: 
 
@@ -306,7 +306,7 @@ Hàm này AZStack SDK gọi để thông báo cuộc gọi kết thúc.
 
 Hàm này AZStack SDK gọi để lấy về UINavigationController dùng để push ChatController khi mà người dùng nhấn vào In-app Notification 
 
-![In-app Notification](http://azstack.com/docs/static/FakeNotification.png "In-app Notification")
+![In-app Notification](/SampleCode/assets/fakenotify.png "In-app Notification")
 
 hoặc khi tạo group xong.
 
