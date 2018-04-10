@@ -1,7 +1,4 @@
 # 0. Quick Start
-<a href="https://www.youtube.com/watch?v=MTQo9T2Eua4" target="_blank">
-    <img src="http://azstack.com/docs/static/video_demo.png" alt=" " width="300" border="10" />
-</a>
 
 Download demo project at: https://github.com/azstack/iOS-SDK-Sample-Project/archive/master.zip
 
@@ -23,7 +20,7 @@ https://developers.azstack.co/SDK/iOS
 >d. Deselect Copy items into destination group's folder. This references the SDK where you installed it rather than copying the SDK into your app.
 
 
-![Add the SDK 1](http://azstack.com/docs/static/AddTheSDK1.png "Add the SDK 1")
+![Add the SDK 1](iOS-SDK-Documentation/SampleCode/assets/AddTheSDK1.png "Add the SDK 1")
 
 ![Add the SDK 2](http://azstack.com/docs/static/AddTheSDK2.png "Add the SDK 2")
 
